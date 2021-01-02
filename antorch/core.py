@@ -154,6 +154,12 @@ class Tensor:
     def __len__(self) -> int:
         return len(self.data)
 
+    def numpy(self):
+        return self.data
+
+    def detach(self):
+        return Tensor(self.data)
+
 
 
 def zeros(shape):
@@ -164,4 +170,8 @@ def ones(shape):
 
 def randn(shape, mu=0, sigma=1):
     seed = sigma * np.random.randn(*shape) + mu
+    return Tensor(seed)
+
+def rand(shape, lower, upper):
+    seed = np.random.uniform(lower, upper, shape)
     return Tensor(seed)

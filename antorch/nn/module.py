@@ -1,4 +1,5 @@
 from collections import OrderedDict
+import math
 import antorch
 
 class Module:
@@ -52,21 +53,3 @@ class Sequential(Module):
 
         return self._parameters
 
-class Linear(Module):
-    def __init__(self, in_features, out_features, bias=True):
-        super().__init__()
-        
-        self.weights = antorch.randn((in_features, out_features), sigma=0.01)
-
-        if bias:
-            self.bias = antorch.zeros(out_features)
-        else:
-            self.bias = None
-
-    def forward(self, x):
-        out = x @ self.weights
-
-        if self.bias is not None:
-            out += self.bias
-
-        return out

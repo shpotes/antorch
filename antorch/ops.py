@@ -11,6 +11,16 @@ def exp(x: Tensor) -> Tensor:
 
     return out
 
+def log(x: Tensor) -> Tensor:
+    out = Tensor(np.log(x), (x,), 'log')
+
+    def _backward():
+        x.grad += out.grad / x.data
+
+    out._backward = _backward
+
+    return out
+
 def where(cond: np.ndarray, x: Tensor, y: Tensor) -> Tensor:
     x = x if isinstance(x, Tensor) else Tensor(x)
     y = y if isinstance(y, Tensor) else Tensor(y)
@@ -38,3 +48,7 @@ def sum(x: Tensor, axis=None) -> Tensor:
     out._backward = _backward
 
     return out
+
+
+def mean(x: Tensor, axis=None) -> Tensor:
+    return sum(x) / len(x)

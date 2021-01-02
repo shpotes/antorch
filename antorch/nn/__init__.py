@@ -7,10 +7,14 @@ from .activations import (
 
 from .losses import (
     MSELoss,
+    BCELoss,
 )
 
 from .module import (
     Module,
     Sequential,
+)
+
+from .layers import (
     Linear
 )

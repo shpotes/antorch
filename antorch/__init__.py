@@ -5,12 +5,15 @@ from .core import (
     zeros,
     ones,
     randn,
+    rand,
 )
 
 from .ops import (
     exp,
     where,
     sum,
+    mean,
+    log
 )
 
 from . import nn, optim
